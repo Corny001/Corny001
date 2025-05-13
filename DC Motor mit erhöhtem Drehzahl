@@ -1,0 +1,26 @@
+#define PIN_MOTOR 3
+
+void setup()
+{
+    pinMode(PIN_MOTOR, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop()
+{
+    for(byte i=0; i<250; i+=10) {
+        Serial.println("up:   " + String(i));
+        analogWrite(PIN_MOTOR, i);
+        delay(500);
+    }
+    analogWrite(PIN_MOTOR, 255);
+    delay(3000);
+
+    for(byte i=250; i>0; i-=10) {
+        Serial.println("down: " + String(i));
+        analogWrite(PIN_MOTOR, i);
+        delay(500);
+    }
+    analogWrite(PIN_MOTOR, 0);
+    delay(3000);
+}
